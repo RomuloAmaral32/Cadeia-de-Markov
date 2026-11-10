@@ -1,0 +1,400 @@
+
+/* =========================================
+   CONFIGURAÇÕES GERAIS
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f6fb;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+.header {
+    background: #10233f;
+    padding: 20px 6%;
+    color: white;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #55a8ff;
+}
+
+.header-label {
+    font-size: 12px;
+    color: #a9bed8;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   CONTEÚDO PRINCIPAL
+========================================= */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 45px auto;
+}
+
+.intro {
+    margin-bottom: 35px;
+}
+
+.tag {
+    color: #2878ce;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.intro h1 {
+    font-size: 34px;
+    color: #10233f;
+    margin: 10px 0;
+}
+
+.intro p {
+    color: #64748b;
+    max-width: 650px;
+}
+
+/* =========================================
+   CARDS
+========================================= */
+
+.card {
+    background: white;
+    padding: 28px;
+    border-radius: 13px;
+    margin-bottom: 25px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(15, 35, 65, 0.04);
+}
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    font-size: 20px;
+    color: #10233f;
+}
+
+.section-heading p {
+    color: #64748b;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* =========================================
+   FORMULÁRIOS
+========================================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    font-size: 15px;
+    background: white;
+    color: #1e293b;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #93c5fd;
+    border-color: #3b82f6;
+}
+
+/* =========================================
+   MATRIZ DE TRANSIÇÃO
+========================================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.matrix-table,
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.matrix-table th,
+.matrix-table td,
+.results-table th,
+.results-table td {
+    padding: 13px 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.matrix-table thead,
+.results-table thead {
+    background: #f1f5f9;
+}
+
+.matrix-table th {
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.matrix-table td input {
+    width: 75px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.helper-text {
+    margin-top: 15px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* =========================================
+   BOTÕES
+========================================= */
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+button {
+    padding: 14px 23px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e1;
+}
+
+/* =========================================
+   MENSAGENS
+========================================= */
+
+.message {
+    display: none;
+    padding: 13px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.message.error {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.message.success {
+    display: block;
+    background: #dcfce7;
+    color: #166534;
+}
+
+/* =========================================
+   RESULTADOS
+========================================= */
+
+.hidden {
+    display: none;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    padding: 22px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.summary-card span {
+    font-size: 14px;
+}
+
+.summary-card strong {
+    font-size: 28px;
+}
+
+.sunny {
+    background: #fff7db;
+    color: #a16207;
+}
+
+.cloudy {
+    background: #e0f2fe;
+    color: #075985;
+}
+
+.rainy {
+    background: #e0e7ff;
+    color: #3730a3;
+}
+
+/* =========================================
+   GRÁFICO
+========================================= */
+
+.chart-card h3,
+.card h3 {
+    margin-bottom: 20px;
+    color: #10233f;
+}
+
+.chart-container {
+    position: relative;
+    height: 350px;
+    width: 100%;
+}
+
+/* =========================================
+   TABELA DE RESULTADOS
+========================================= */
+
+.results-table th {
+    color: #475569;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.results-table td {
+    font-size: 14px;
+}
+
+/* =========================================
+   EXPLICAÇÃO MATEMÁTICA
+========================================= */
+
+.explanation p {
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+.formula {
+    background: #eff6ff;
+    color: #1d4ed8;
+    text-align: center;
+    padding: 20px;
+    margin: 18px 0;
+    border-radius: 8px;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+/* =========================================
+   RODAPÉ
+========================================= */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 650px) {
+
+    .container {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    .intro h1 {
+        font-size: 26px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .chart-container {
+        height: 280px;
+    }
+
+    .header-label {
+        font-size: 9px;
+    }
+}

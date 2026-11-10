@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Simulador de Cadeia de Markov</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Biblioteca para criação dos gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">MARKOV<span>SIM</span></div>
+            <span class="header-label">PROJETO ACADÊMICO</span>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="intro">
+            <span class="tag">MATEMÁTICA COMPUTACIONAL</span>
+
+            <h1>Simulador de Cadeia de Markov</h1>
+
+            <p>
+                Explore como os estados climáticos podem mudar ao longo
+                dos dias utilizando probabilidades e matrizes de transição.
+            </p>
+        </section>
+
+        <!-- CONFIGURAÇÕES -->
+        <section class="card">
+
+            <div class="section-heading">
+                <h2>1. Configuração da simulação</h2>
+                <p>Defina as condições iniciais.</p>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="estadoInicial">
+                        Clima inicial
+                    </label>
+
+                    <select id="estadoInicial">
+                        <option value="0">☀️ Ensolarado</option>
+                        <option value="1">☁️ Nublado</option>
+                        <option value="2">🌧️ Chuvoso</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantidadeDias">
+                        Quantidade de dias
+                    </label>
+
+                    <input
+                        type="number"
+                        id="quantidadeDias"
+                        value="7"
+                        min="1"
+                        max="365"
+                    >
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- MATRIZ DE TRANSIÇÃO -->
+        <section class="card">
+
+            <div class="section-heading">
+                <h2>2. Matriz de transição</h2>
+
+                <p>
+                    Configure a probabilidade de mudança de cada
+                    condição climática.
+                </p>
+            </div>
+
+            <div class="table-wrapper">
+
+                <table class="matrix-table">
+
+                    <thead>
+                        <tr>
+                            <th>Estado atual</th>
+                            <th>☀️ Ensolarado</th>
+                            <th>☁️ Nublado</th>
+                            <th>🌧️ Chuvoso</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <th>☀️ Ensolarado</th>
+                            <td>
+                                <input type="number" id="p00"
+                                    value="70" min="0" max="100">
+                            </td>
+                            <td>
+                                <input type="number" id="p01"
+                                    value="20" min="0" max="100">
+                            </td>
+                            <td>
+                                <input type="number" id="p02"
+                                    value="10" min="0" max="100">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>☁️ Nublado</th>
+                            <td>
+                                <input type="number" id="p10"
+                                    value="30" min="0" max="100">
+                            </td>
+                            <td>
+                                <input type="number" id="p11"
+                                    value="40" min="0" max="100">
+                            </td>
+                            <td>
+                                <input type="number" id="p12"
+                                    value="30" min="0" max="100">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>🌧️ Chuvoso</th>
+                            <td>
+                                <input type="number" id="p20"
+                                    value="20" min="0" max="100">
+                            </td>
+                            <td>
+                                <input type="number" id="p21"
+                                    value="30" min="0" max="100">
+                            </td>
+                            <td>
+                                <input type="number" id="p22"
+                                    value="50" min="0" max="100">
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="helper-text">
+                Os valores devem ser percentuais de 0 a 100.
+                Cada linha precisa somar exatamente 100%.
+            </p>
+
+        </section>
+
+        <!-- BOTÕES -->
+        <section class="actions">
+
+            <button id="btnSimular" class="btn-primary">
+                Executar simulação
+            </button>
+
+            <button id="btnRestaurar" class="btn-secondary">
+                Restaurar valores padrão
+            </button>
+
+        </section>
+
+        <div id="mensagem" class="message" role="status"></div>
+
+        <!-- RESULTADOS -->
+        <section id="resultados" class="results hidden">
+
+            <div class="section-heading">
+                <h2>3. Resultados da simulação</h2>
+                <p>Probabilidades calculadas pelo algoritmo.</p>
+            </div>
+
+            <div class="summary-grid">
+
+                <div class="summary-card sunny">
+                    <span>☀️ Ensolarado</span>
+                    <strong id="resSol">0%</strong>
+                </div>
+
+                <div class="summary-card cloudy">
+                    <span>☁️ Nublado</span>
+                    <strong id="resNublado">0%</strong>
+                </div>
+
+                <div class="summary-card rainy">
+                    <span>🌧️ Chuvoso</span>
+                    <strong id="resChuva">0%</strong>
+                </div>
+
+            </div>
+
+            <!-- GRÁFICO -->
+            <div class="card chart-card">
+
+                <h3>Evolução das probabilidades</h3>
+
+                <div class="chart-container">
+                    <canvas id="graficoMarkov"></canvas>
+                </div>
+
+            </div>
+
+            <!-- TABELA -->
+            <div class="card">
+
+                <h3>Histórico das probabilidades</h3>
+
+                <div class="table-wrapper">
+
+                    <table class="results-table">
+
+                        <thead>
+                            <tr>
+                                <th>Dia</th>
+                                <th>☀️ Ensolarado</th>
+                                <th>☁️ Nublado</th>
+                                <th>🌧️ Chuvoso</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="corpoResultados">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- EXPLICAÇÃO -->
+            <div class="card explanation">
+
+                <h3>Como o cálculo foi realizado?</h3>
+
+                <p>
+                    A cada dia, o vetor de probabilidades é multiplicado
+                    pela matriz de transição.
+                </p>
+
+                <div class="formula">
+                    V(n+1) = V(n) × P
+                </div>
+
+                <p>
+                    Onde V representa o vetor de probabilidades
+                    e P representa a matriz de transição.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            Simulador de Cadeia de Markov |
+            Projeto acadêmico
+        </p>
+    </footer>
+
+    <!-- Primeiro o algoritmo, depois a interface -->
+    <script src="markov.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
